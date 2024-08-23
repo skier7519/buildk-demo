@@ -14,4 +14,4 @@ $ go build
 A simple application that takes a command line argument, and then returns it to you in a string. 
 
 From the root directory, run `$ chmod +x hello/hello` to change the permissions of the file, granting the file executable permissions. 
-You can then execute the file with an argument, in this case John Doe. To execute the file,  run `$ ./hello/hello Henna Abbas`. This will return 'Hello, Henna Abbas!'.
+You can then execute the file with an argument, in this case Henna Abbas. To execute the file,  run `$ ./hello/hello Henna Abbas`. This will return 'Hello, Henna Abbas!'.
