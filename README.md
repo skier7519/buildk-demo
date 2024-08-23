@@ -11,11 +11,7 @@ $ cd hello
 $ go build
 ```
 
-A simple application that takes a command line argument, and then returns it to you in a string:
+A simple application that takes a command line argument, and then returns it to you in a string. 
 
-```
-$ chmod +x hello/hello
-$ ./hello/hello John Doe
-```
-
-The above will return 'Hello, John Doe!'
+From the root directory, run `$ chmod +x hello/hello` to change the permissions of the file, granting the file executable permissions. 
+You can then execute the file with an argument, in this case John Doe. To execute the file,  run `$ ./hello/hello Henna Abbas`. This will return 'Hello, Henna Abbas!'.
