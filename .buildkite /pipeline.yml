@@ -1,0 +1,8 @@
+steps:
+  - label: "build go app"
+  - command: "cd && go build"
+    plugins:
+      - docker#v5.11.0:
+          image: "golang:1.18.0"
+
+   
