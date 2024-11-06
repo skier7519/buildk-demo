@@ -1,0 +1,12 @@
+agents:
+  queue: "linux-ec2"
+env:
+  GO_IMAGE: "golang:1.18.10"
+  HELLO_APP: "hello/hello"
+  NAME_INPUT: "$(buildkite-agent meta-data get name-input)"
+  TEST_RESULTS: "junit.xml"
+docker: &docker
+  docker#v5.11.0:
+    image: ${GO_IMAGE}
+    mount-buildkite-agent: true
+    propagate-environment: true
