@@ -7,6 +7,9 @@
 *.so
 *.dylib
 
+# Binary for `hello.go` program
+hello/hello
+
 # Test binary, built with `go test -c`
 *.test
 
