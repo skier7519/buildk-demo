@@ -1,0 +1,49 @@
+steps:
+  # Compile the go program and upload the build as an artifact
+  - label: ":hammer_and_wrench: build + upload"
+    key: "build-upload"
+    command: |
+      go build -o ${HELLO_APP} ${HELLO_APP}.go
+    plugins:
+      - artifacts#v1.9.4:
+        upload: "${HELLO_APP}"
+      - *docker
+
+  # Block the build to require manual user input before proceeding
+  - block: ":name_badge: input name"
+    key: "input-block"
+    depends_on: "build-upload"
+    prompt: ":wave: Enter your name to proceed:"
+    fields:
+      - text: "Your name"
+        key: "name-input"
+        default: "Lelia"
+  
+  # Pass user input to unit tests and upload the results as an artifact
+  - label: ":golang: unit tests"
+    key: "unit-tests"
+    depends_on: "input-block"
+    command: |
+      go install gotest.tools/gotestsum@v1.12.0
+      gotestsum --junitfile ${TEST_RESULTS}
+    env:
+      TEST_DIRECTORY: "hello"
+    plugins:
+      - artifacts#v1.9.4:
+        upload: "${TEST_RESULTS}"
+      - *docker
+
+  # TODO: Annotate BK pipeline with unit test results
+  # - label: ":junit: annotate build"
+
+  # Download program artifact and pass user input to execute
+  - label: ":rocket: execute program"
+    key: "run-app"
+    depends_on: "input-block"
+    command: |
+      chmod +x ./${HELLO_APP}
+      ./${HELLO_APP} ${NAME_INPUT}
+    plugins:
+      - artifacts#v1.9.4:
+        download: "${HELLO_APP}"
+      - *docker
