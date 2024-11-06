@@ -1,3 +1,22 @@
+# Set top-level queue for linux-ec2 agent
+agents:
+  queue: "linux-ec2"
+
+# Define common environment variables
+env:
+  GO_IMAGE: "golang:1.18.10"
+  HELLO_APP: "hello/hello"
+  NAME_INPUT: "$(buildkite-agent meta-data get name-input)"
+  TEST_RESULTS: "junit.xml"
+
+# Add YAML anchor for Docker plugin logic
+docker: &docker
+  docker#v5.11.0:
+    image: ${GO_IMAGE}
+    mount-buildkite-agent: true
+    propagate-environment: true
+
+# Define the Buildkite pipeline steps
 steps:
   # Compile the go program and upload the build as an artifact
   - label: ":hammer_and_wrench: build + upload"
