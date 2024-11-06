@@ -1,6 +1,6 @@
 # Go example project
 
-[![Build Status](https://badge.buildkite.com/399f24bbeddf266368de484129387bb437110cf475c11708e1.svg)](https://buildkite.com/lelia/buildkite-pipeline-example) [![Go Reference](https://pkg.go.dev/badge/golang.org/x/example.svg)](https://pkg.go.dev/golang.org/x/example)
+[![Build status](https://badge.buildkite.com/a2febd9a702fdaeeee0512ab36bb69c922871f1ee736d87a55.svg)](https://buildkite.com/lelia/buildkite-pipeline-example) [![Go Reference](https://pkg.go.dev/badge/golang.org/x/example.svg)](https://pkg.go.dev/golang.org/x/example)
 
 This repository is a fork of the basic Golang example repo, trimmed down to contain a single example.
 
