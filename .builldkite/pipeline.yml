@@ -1,0 +1,11 @@
+env:
+  PATH: "\\$PATH:/usr/local/go/bin"
+
+steps:
+  - block: "Enter a name:"
+    branches: "main"
+
+  - command: "echo \"pwd\"\npwd\necho \"cd hello\"\ncd hello\necho \"pwd\"\npwd\necho \"go build\"\ngo build\necho \"chmod+x hello\"\nchmod +x hello\necho \"./hello \\$name\"\n./hello \\$name\n\n"
+    label: "Build app"
+    env:
+      name: "Nizar"
