@@ -2,10 +2,13 @@ env:
   PATH: "\\$PATH:/usr/local/go/bin"
 
 steps:
-  - block: "Enter a name:"
-    branches: "main"
+  - input: "Information please"
+    fields:
+      - text: "What is your name?"
+        key: "name"
 
-  - command: "echo \"pwd\"\npwd\necho \"cd hello\"\ncd hello\necho \"pwd\"\npwd\necho \"go build\"\ngo build\necho \"chmod+x hello\"\nchmod +x hello\necho \"./hello \\$name\"\n./hello \\$name\n\n"
+
+  - command: "/bin/chmod +x /var/lib/buildkite-agent/builds/ip-172-31-23-99-ec2-internal-1/nizarc-buildkite-demo/buildkite-demo-app/.buildkite/script.sh\n\n/var/lib/buildkite-agent/builds/ip-172-31-23-99-ec2-internal-1/nizarc-buildkite-demo/buildkite-demo-app/.buildkite/script.sh"
     label: "Build app"
-    env:
-      name: "Nizar"
+    #env:
+      #name: "Nizar"
