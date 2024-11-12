@@ -12,10 +12,10 @@ steps:
     label: "Set permissions"
   - command: "/var/lib/buildkite-agent/builds/ip-172-31-23-99-ec2-internal-1/nizarc-buildkite-demo/buildkite-demo-app/.buildkite/script.sh"
     artifact_paths:
-    - 'dist/app' # upload the built application as an artifact
+    - 'hello' # upload the built application as an artifact
     plugins:
       - docker-compose#v5.4.0:
-        run: app
+        run: hello
     label: "Build & Execute app"
   
     #env:
