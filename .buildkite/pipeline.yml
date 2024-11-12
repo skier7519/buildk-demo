@@ -3,8 +3,8 @@ env:
 
 steps:
   - block: "Input"
-  prompt: "Enter your name:"
-  fields:
+    prompt: "Enter your name:"
+    fields:
     - text: "What is your name?"
       key: "name"
 
