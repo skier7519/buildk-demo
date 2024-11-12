@@ -9,8 +9,8 @@ steps:
       key: "name"
       
   - command: "/bin/chmod +x /var/lib/buildkite-agent/builds/ip-172-31-23-99-ec2-internal-1/nizarc-buildkite-demo/buildkite-demo-app/.buildkite/script.sh"
-    label: "Build app"
+    label: "Set permissions"
   - command: "/var/lib/buildkite-agent/builds/ip-172-31-23-99-ec2-internal-1/nizarc-buildkite-demo/buildkite-demo-app/.buildkite/script.sh"
-    label: "Run app"
+    label: "Build & Execute app"
     #env:
       #name: "Nizar"
