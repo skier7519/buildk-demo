@@ -16,6 +16,6 @@ steps:
     plugins:
       - docker-compose#v5.4.0:
     label: "Build & Execute app"
-      run: app
+    run: app
     #env:
       #name: "Nizar"
