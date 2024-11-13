@@ -1,12 +1,12 @@
 version: '3'
 services:
-  app:
+  app: hello
     build: .
     volumes:
       - ./:/work:cached
       - ~/gocache:/gocache
       - ~/gomodcache:/gomodcache
-    working_dir: /work
+    working_dir: ./
     environment:
       - BUILDKITE_AGENT_ACCESS_TOKEN
       - BUILDKITE_JOB_ID
@@ -14,3 +14,4 @@ services:
       - BUILDKITE_BUILD_NUMBER
       - GOCACHE=/gocache
       - GOMODCACHE=/gomodcache
+      - name
