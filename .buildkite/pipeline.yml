@@ -1,16 +1,24 @@
-env:
-  PATH: "\\$PATH:/usr/local/go/bin"
-
 steps:
-  - block: "Input"
-    prompt: "Enter your name:"
+  - label: ":docker: Build Project"
+    plugins:
+    - docker#v3.9.0:
+          image: "golang:1.18.0"
+          workdir: "/app"
+          volumes:
+            - ".:/app"
+    command:
+      - go build -o hello/hello ./hello
+    artifact_paths:
+      - "hello/hello"
+  - label: ":question: Enter Name"
+    type: block
+    prompt: "What is your name?"
     fields:
-    - text: "What is your name?"
-      key: "name"
-
-  - command: "/bin/chmod +x /var/lib/buildkite-agent/builds/ip-172-31-23-99-ec2-internal-1/nizarc-buildkite-demo/buildkite-demo-app/.buildkite/script.sh"
-    label: "Set permissions"
-  - command: "/var/lib/buildkite-agent/builds/ip-172-31-23-99-ec2-internal-1/nizarc-buildkite-demo/buildkite-demo-app/.buildkite/script.sh"
-    label: "Build & Execute app"
-    #env:
-      #name: "Nizar"
+      - text: "Your name"
+        key: "name"
+  - label: ":large_green_circle: Running Hello Go program"
+    command:
+      - buildkite-agent artifact download "hello/hello" .
+      - chmod +x hello/hello
+      - ./hello/hello $(buildkite-agent meta-data get "name")
+        # Executes the binary, passing the user's name retrieved from metadata as an argument.
