@@ -22,4 +22,4 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /hello
 EXPOSE 8080
 
 # Run
-CMD ["/hello/hello"]
+CMD ["/hello"]
