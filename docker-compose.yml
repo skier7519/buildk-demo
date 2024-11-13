@@ -1,7 +1,7 @@
 version: "3"
 services:
   app:
-    image-repository: packages.buildkite.com/nizarc-buildkite-demo/buildkite-sample-registry/
+    image: hello
     build: .
     volumes:
       - ./:/work:cached
