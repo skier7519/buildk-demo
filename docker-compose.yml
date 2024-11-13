@@ -1,7 +1,6 @@
 version: "3"
 services:
   app:
-    #image: hello  # This should be the name of a Docker image, or remove it if you're not specifying one
     build: .
     volumes:
       - ./:/work:cached
