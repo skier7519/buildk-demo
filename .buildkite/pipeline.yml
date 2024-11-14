@@ -1,4 +1,5 @@
 steps:
+  #### STAGE ####
   - label: ":docker: Build Project"
     plugins:
     - docker#v3.9.0:
@@ -10,15 +11,20 @@ steps:
       - go build -o hello/hello ./hello
     artifact_paths:
       - "hello/hello"
+  #### STAGE ####
   - label: ":question: Enter Name"
     type: block
     prompt: "What is your name?"
     fields:
-      - text: "Your name"
+      - text: "Enter your name here"
         key: "name"
+  #### STAGE ####
+  - label: "Manager approval"
+    type: block
+    prompt: "Do you approve of the following build: Hello" + $(buildkite-agent meta-data get "name")
+    #### STAGE ####
   - label: ":large_green_circle: Running Hello Go program"
     command:
       - buildkite-agent artifact download "hello/hello" .
       - chmod +x hello/hello
       - ./hello/hello $(buildkite-agent meta-data get "name")
-        # Executes the binary, passing the user's name retrieved from metadata as an argument.
