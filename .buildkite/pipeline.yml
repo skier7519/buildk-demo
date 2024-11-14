@@ -21,7 +21,7 @@ steps:
   #### STAGE ####
   - label: "Manager approval"
     type: block
-    prompt: "Do you approve of the following build: Hello " $(buildkite-agent meta-data get 'name')
+    prompt: "Do you approve of the following build: Hello "
     fields:
       - select: "Choose Yes or No"
         key: "Choice"
