@@ -25,7 +25,7 @@ steps:
     #required: false
     fields:
       - select: "Choose Yes or No"
-        key: "Choice"
+        #key: "Choice"
         options:
           - label: "Yes"
             key: "yes"
