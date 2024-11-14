@@ -22,15 +22,15 @@ steps:
   - label: "Manager approval"
     type: block
     prompt: "Do you approve of the following build: Hello "
+    required: false
     fields:
       - select: "Choose Yes or No"
         key: "Choice"
-        required: yes
         options:
           - label: "Yes"
             key: "yes"
           - label: "No"
-            key: "no"
+            key: "no" 
     #### STAGE ####
   - label: ":large_green_circle: Running Hello Go program"
     command:
