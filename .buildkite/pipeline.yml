@@ -21,7 +21,16 @@ steps:
   #### STAGE ####
   - label: "Manager approval"
     type: block
-    prompt: "Do you approve of the following build: Hello $(buildkite-agent meta-data get 'name')"
+    prompt: "Do you approve of the following build: Hello " $(buildkite-agent meta-data get 'name')
+    fields:
+      - select: "Choose Yes or No"
+        key: "Choice"
+        required: yes
+        options:
+          - label: "Yes"
+            key: "yes"
+          - label: "No"
+            key: "no"
     #### STAGE ####
   - label: ":large_green_circle: Running Hello Go program"
     command:
