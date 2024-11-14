@@ -22,7 +22,7 @@ steps:
   - label: "Manager approval"
     type: block
     prompt: "Do you approve of the following build: Hello "
-    required: false
+    #required: false
     fields:
       - select: "Choose Yes or No"
         key: "Choice"
