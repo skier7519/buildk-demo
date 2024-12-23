@@ -1,0 +1,54 @@
+steps:
+  - label: ":key: List directory contents"
+    command: |
+      echo "Current directory:"
+      pwd
+      echo "Directory contents:"
+      ls -la
+      echo "Contents of hello directory:"
+      ls -la hello/
+
+  - label: ":docker: Build Docker Image"
+    plugins:
+      - docker#v3.7.0:
+          image: "golang:1.23.4-bookworm"
+          #workdir: /go/src/app
+          #volumes:
+          # - .:/go/src/app
+          command: [
+              "/bin/sh",
+              "-c",
+              "
+              cd hello &&
+              go build -v -o hello &&
+              mkdir -p artifact &&
+              mv hello artifact/ &&
+              buildkite-agent artifact upload 'artifact/**/*'
+              ",
+            ]
+
+  - block: ":name_input: Enter your name"
+    prompt: "Please enter your name"
+    fields:
+      - text: "Name"
+        key: "users-name"
+        required: true
+
+  - label: ":golang: Run the program"
+    command: |
+      echo "Current directory:"
+      pwd
+      echo "Contents:"
+      ls -la
+      echo "Downloading artifact:"
+      buildkite-agent artifact download 'artifact/*' .
+      echo "Contents:"
+      ls -la artifact/
+      echo "Making executable:"
+      chmod +x artifact/hello
+      echo "Running program:"
+      ./artifact/hello "$(buildkite-agent meta-data get users-name)"
+      ./artifact/hello "$(buildkite-agent meta-data get users-name)" > outputfile.txt
+      ls -al
+      ls -al artifact/*
+      buildkite-agent artifact upload outputfile.txt
